@@ -1,7 +1,5 @@
 # setup migrations
 
-Make sure that your active directory is in the src folder
-
 sequelize migration:generate --name [new-table-name]
 
 ### example
