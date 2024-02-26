@@ -5,7 +5,7 @@ import {
   ParseIntPipe,
   Query,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { AirportService } from './airport.service';
 import { AirportDto } from './dto/airport.dto';
 
@@ -20,10 +20,12 @@ export class AirportController {
     type: AirportDto,
     isArray: true,
   })
+  @ApiQuery({ name: 'q', required: false })
   async getAirportList(
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page?: number
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page?: number,
+    @Query('q') q?: string
   ) {
     const limit: number = 20;
-    return this.airportService.findPaginate({ page, limit });
+    return this.airportService.findPaginate(q, { page, limit });
   }
 }

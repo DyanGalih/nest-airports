@@ -5,7 +5,7 @@ import { PaginationOptions } from '../../common/utils/sequelize-paginate.util';
 @Injectable()
 export class AirportService {
   constructor(private airportRepository: AirportRepository) {}
-  findPaginate(paginationOptions?: PaginationOptions) {
-    return this.airportRepository.findPaginate(paginationOptions);
+  findPaginate(q: string = '', paginationOptions?: PaginationOptions) {
+    return this.airportRepository.findPaginate(q, paginationOptions);
   }
 }
